@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: my-config
+data:
+    profile: "dev"
+    db_host: "10.20.30.40"
+    welcom-script: |
+        echo Hello!
+        echo Db is $ db_host
