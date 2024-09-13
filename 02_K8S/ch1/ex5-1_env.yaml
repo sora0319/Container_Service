@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: env-test-pod
+spec:
+    containers:
+        - name: my-container
+          image: nginx
+          env:
+              - name: SAMPLE_ENV
+                value: "Sample Variable"
+              - name: POD_NAME
+                valueFrom:
+                    fieldRef:
+                        fieldPath: metadata.name
