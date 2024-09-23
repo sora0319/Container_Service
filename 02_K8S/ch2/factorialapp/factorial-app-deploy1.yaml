@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-factorial-app
+  namespace: factorial
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: factorial-app
+  template:
+    metadata:
+      labels:
+        app: factorial-app
+    spec:
+      containers:
+        - name: factorial
+          image: sora5341/factorial-app-for-k8s:0.0.1

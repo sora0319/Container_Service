@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
@@ -33,7 +33,7 @@ jib {
         image = "openjdk:17"
     }
     to {
-        image = "sora0319/factorial-app-for-k8s"
+        image = "sora5341/factorial-app-for-k8s"
         tags = ['latest', '0.0.1']
     }
     container {
