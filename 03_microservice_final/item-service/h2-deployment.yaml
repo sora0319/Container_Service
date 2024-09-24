@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: h2-deployment
+  namespace: micro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: h2
+  template:
+    metadata:
+      labels:
+        app: h2
+    spec:
+      containers:
+        - name: h2
+          image: oscarfonts/h2:2.1.210
+          ports:
+            - containerPort: 1521
+          env:
+            - name: H2_OPTIONS
+              value: "-tcp -tcpAllowOthers -ifNotExists"

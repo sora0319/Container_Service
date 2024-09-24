@@ -34,7 +34,7 @@ jib {
     }
     to {
         image = "sora5341/factorial-app-for-k8s"
-        tags = ['latest', '0.0.1']
+        tags = ['latest', '0.0.3']
     }
     container {
         creationTime = "USE_CURRENT_TIMESTAMP"

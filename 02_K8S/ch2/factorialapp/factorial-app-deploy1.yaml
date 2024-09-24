@@ -15,4 +15,4 @@ spec:
     spec:
       containers:
         - name: factorial
-          image: sora5341/factorial-app-for-k8s:0.0.1
+          image: sora5341/factorial-app-for-k8s:0.0.2
