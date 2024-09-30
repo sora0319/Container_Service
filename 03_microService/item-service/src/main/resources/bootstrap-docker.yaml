@@ -1,0 +1,11 @@
+server:
+  port: 0 # 사용 가능한 port 를 random 하게 설정.
+spring:
+  application:
+    name: item-service
+  cloud:
+    config:
+      uri: http://config-server:8080
+    loadbalancer:
+      ribbon:
+        enabled: false
