@@ -1,0 +1,13 @@
+server:
+  port: 8070
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    config:
+      uri: http://config-service:9090
+    # bootstrap.yaml 의 uri 로는 접속이 되지 않음.
+    #uri: http://localhost:8080
+    loadbalancer:
+      ribbon:
+        enabled: false
