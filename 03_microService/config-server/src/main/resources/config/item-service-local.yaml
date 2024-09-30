@@ -1,0 +1,36 @@
+logging:
+  file:
+    name: logs/api.log
+  level:
+    root: info
+    org.msa.item: debug
+  logback:
+    rolling policy:
+      max-file-size: 500MB
+      max-history: 10
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/./test
+#    url: jdbc:h2:tcp://172.19.0.2:1521/test
+    username: sa
+    password: sa
+#    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-register: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

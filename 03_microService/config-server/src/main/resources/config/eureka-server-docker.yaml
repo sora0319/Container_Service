@@ -1,0 +1,25 @@
+# logging 관련 설정
+logging:
+  file:
+    name: logs/api.log
+    max-size: 500MB
+    max-history: 10
+  level:
+    root: info
+    org.msa.eurekaserver: debug
+
+# spring 관련 설정
+spring:
+  application:
+    name: eureka-server
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: eureka-server # 유레카의 서비스명을 의미
+  client:
+    serviceUrl:
+      defaultZone: http://172.20.0.1:${server.port}/eureka/
+    register-with-eureka: false
+    fetch-registry: false
