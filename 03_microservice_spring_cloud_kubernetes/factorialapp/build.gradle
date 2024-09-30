@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.6'
+    // gradle jib 을 사용해서 application container image 생성
+    // docker hub push 가능
+    id 'com.google.cloud.tools.jib' version '3.4.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// jib 설정
+jib {
+    // base image 설정
+    from {
+        image = "openjdk:17"
+    }
+    to {
+        image = "sora5341/factorial-app-for-k8s-micro"
+        tags = ['latest', '0.0.2']
+    }
+    container {
+        creationTime = "USE_CURRENT_TIMESTAMP"
+    }
+}
