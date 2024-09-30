@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind : Deployment
+metadata:
+  name: gateway-server
+  namespace: micro
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: gateway-server
+  template:
+    metadata:
+      labels:
+        app: gateway-server
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: gateway-server
+          image: sora5341/gatewayserver-for-k8s:0.0.4

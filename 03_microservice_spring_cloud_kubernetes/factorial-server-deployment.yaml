@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: factorial-server
+  namespace: micro
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: factorial-server
+  template:
+    metadata:
+      labels:
+        app: factorial-server
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: factorial
+          image: sora5341/factorial-app-for-k8s-micro:0.0.2
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "/bin/sh","-c","sleep 10" ]
+          startupProbe:
+            httpGet:
+              path: /probe/startup
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 1
+            failureThreshold: 10
+          readinessProbe:
+            httpGet:
+              path: /probe/ready
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 1
+            successThreshold: 2
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /probe/live
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 1
+            failureThreshold: 3

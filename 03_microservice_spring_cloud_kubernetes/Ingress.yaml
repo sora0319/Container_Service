@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: micro-ingress
+  namespace: micro
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /factorial
+            pathType: Prefix
+            backend:
+              service:
+                name: factorial-cache-server-service
+                port:
+                  number: 8080
+          - path: /v1/item/
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-service
+                port:
+                  number: 8070
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: h2-service  # H2 서비스 이름
+                port:
+                  number: 81  # Web Console이 사용하는 포트
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: eureka-service
+#                port:
+#                  number: 8761

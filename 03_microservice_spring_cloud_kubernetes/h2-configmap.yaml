@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: h2-config
+  namespace: micro
+data:
+  SPRING_DATASOURCE_URL: "jdbc:h2:tcp://h2-service:1521/mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
+  SPRING_DATASOURCE_DRIVER-CLASS_NAME: "org.h2.Driver"
+  SPRING_DATASOURCE_USERNAME: "sa"
+  SPRING_DATASOURCE_PASSWORD: ""
+  SPRING_H2_CONSOLE_ENABLED: "true"  # H2 콘솔 활성화
+  SPRING_JPA_HIBERNATE_DDL_AUTO: "update"  # 또는 "create"
+  SPRING_JPA_SHOW_SQL: "true"  # SQL 쿼리 로그 출력

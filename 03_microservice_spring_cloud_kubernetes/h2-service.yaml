@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: h2-service
+  namespace: micro
+spec:
+  type: ClusterIP
+  ports:
+    - name: tcpserver
+      protocol: TCP
+      port: 1521
+      targetPort: 1521
+    - name: console
+      protocol: TCP
+      port: 81
+      targetPort: 81
+  selector:
+    app: h2
